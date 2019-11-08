@@ -1,0 +1,1 @@
+WhereToMeet is a web application to help friends choose place to hang out. 
