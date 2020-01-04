@@ -1,31 +1,19 @@
 package WhereToMeet.direction;
+import com.google.auto.value.AutoValue;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import java.io.Serializable;
+@AutoValue
+public abstract class DirectionResult {
+  public abstract Routes getRoutes();
+  public abstract String getStatus();
 
-public class DirectionResult implements Serializable {
-  private JsonNode geocoded_waypoints;
-  private Routes routes;
-  private String status;
-
-  public String getStatus() {
-    return status;
+  static Builder builder() {
+    return new AutoValue_DirectionResult.Builder();
   }
 
-  public Routes getRoutes() {
-    return routes;
+  @AutoValue.Builder
+  abstract static class Builder {
+    abstract Builder setRoutes(Routes routes);
+    abstract Builder setStatus(String status);
+    abstract DirectionResult build();
   }
-
-  public void setGeocoded_waypoints(JsonNode geocoded_waypoints) {
-    this.geocoded_waypoints = geocoded_waypoints;
-  }
-
-  public void setRoutes(Routes routes) {
-    this.routes = routes;
-  }
-
-  public void setStatus(String status) {
-    this.status = status;
-  }
-
 }

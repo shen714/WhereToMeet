@@ -11,19 +11,19 @@ public class RoutesParser {
   public static Routes parseRoute(JsonNode rootNode) {
     Iterator<Entry<String, JsonNode>> fieldsIterator = rootNode.fields();
 
-    Routes routes = new Routes();
+    Routes.Builder routesBuilder = new Routes.Builder();
     while (fieldsIterator.hasNext()) {
       Entry<String,JsonNode> field = fieldsIterator.next();
       String key = field.getKey();
       JsonNode value = field.getValue();
       if (key.equals(BOUNDS)) {
-        routes.setBounds(value.toString());
+        routesBuilder.setBounds(value.toString());
       } else if (key.equals(LEGS)) {
-        routes.setLegs(LegsParser.parseLegs(value.get(0)));
+        routesBuilder.setLegs(LegsParser.parseLegs(value.get(0)));
       }
     }
 
-    return routes;
+    return routesBuilder.build();
   }
 
 }

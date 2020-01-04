@@ -14,26 +14,27 @@ public class StepParser {
 
 
   public static Step parseStep(JsonNode rootNode) {
-    Step step = new Step();
+    Step.Builder stepBuilder = Step.builder();
+
     Iterator<Entry<String, JsonNode>> fieldsIterator = rootNode.fields();
     while (fieldsIterator.hasNext()) {
       Entry<String,JsonNode> field = fieldsIterator.next();
       String key = field.getKey();
       JsonNode value = field.getValue();
       if (key.equals(DISTANCE)) {
-        step.setDistance(value.toString());
+        stepBuilder.setDistance(value.toString());
       } else if (key.equals(DURATION)) {
         int duration = Integer.valueOf(value.get("text").toString().replaceAll("[^0-9]", ""));
-        step.setDuration(duration);
+        stepBuilder.setDuration(duration);
       } else if (key.equals(END_LOCATION)) {
-        step.setEndLocation(new Location(
+        stepBuilder.setEndLocation(new Location(
                 value.get(LAT).asDouble(), value.get(LNG).asDouble()));
       } else if (key.equals(START_LOCATION)) {
-        step.setStartLocation(new Location(
+        stepBuilder.setStartLocation(new Location(
             value.get(LAT).asDouble(), value.get(LNG).asDouble()));
       }
     }
-    return step;
+    return stepBuilder.build();
   }
 
 

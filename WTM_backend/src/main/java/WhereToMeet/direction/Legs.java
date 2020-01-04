@@ -1,35 +1,28 @@
 package WhereToMeet.direction;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import java.util.ArrayList;
-import java.util.List;
+import com.google.auto.value.AutoValue;
+import com.google.common.collect.ImmutableList;
 
-public class Legs {
-  private JsonNode distance;
-  private int duration;
-  private List<Step> steps = new ArrayList<>();
+@AutoValue
+public abstract class Legs {
+  public abstract JsonNode getDistance();
+  public abstract int getDuration();
+  public abstract ImmutableList<Step> getSteps();
 
-  public List<Step> getSteps() {
-    return steps;
+  static Builder builder() {
+    return new AutoValue_Legs.Builder();
   }
 
-  public void setSteps(List<Step> steps) {
-    this.steps = steps;
-  }
-
-  public JsonNode getDistance() {
-    return distance;
-  }
-
-  public int getDuration() {
-    return duration;
-  }
-
-  public void setDistance(JsonNode distance) {
-    this.distance = distance;
-  }
-
-  public void setDuration(int duration) {
-    this.duration = duration;
+  @AutoValue.Builder
+  abstract static class Builder {
+    abstract Builder setDistance(JsonNode distance);
+    abstract Builder setDuration(int duration);
+    abstract ImmutableList.Builder<Step> stepsBuilder();
+    public Builder addStep(Step step) {
+      stepsBuilder().add(step);
+      return this;
+    }
+    abstract Legs build();
   }
 }

@@ -1,41 +1,28 @@
 package WhereToMeet.direction;
 
-public class Step {
-  private String distance;
-  private int duration;
-  private Location endLocation;
-  private Location startLocation;
+import com.google.auto.value.AutoValue;
+import javafx.util.Builder;
 
-  public String getDistance() {
-    return distance;
+@AutoValue
+public abstract class Step {
+  public abstract String getDistance();
+  public abstract int getDuration();
+  public abstract Location getEndLocation();
+  public abstract Location getStartLocation();
+
+  static Builder builder() {
+    return new AutoValue_Step.Builder();
   }
 
-  public void setDistance(String distance) {
-    this.distance = distance;
-  }
+  @AutoValue.Builder
+  abstract static class Builder {
+    abstract Builder setDistance(String distance);
+    abstract Builder setDuration(int duration);
+    abstract Builder setEndLocation(Location endLocation);
+    abstract Builder setStartLocation(Location startLocation);
 
-  public int getDuration() {
-    return duration;
-  }
+    abstract Step build();
 
-  public void setDuration(int duration) {
-    this.duration = duration;
-  }
-
-  public Location getEndLocation() {
-    return endLocation;
-  }
-
-  public void setEndLocation(Location endLocation) {
-    this.endLocation = endLocation;
-  }
-
-  public Location getStartLocation() {
-    return startLocation;
-  }
-
-  public void setStartLocation(Location startLocation) {
-    this.startLocation = startLocation;
   }
 
 }

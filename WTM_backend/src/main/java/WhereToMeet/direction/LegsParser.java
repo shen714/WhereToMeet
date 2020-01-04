@@ -12,23 +12,24 @@ public class LegsParser {
   public static Legs parseLegs(JsonNode rootNode) {
     Iterator<Entry<String, JsonNode>> fieldsIterator = rootNode.fields();
 
-    Legs legs = new Legs();
+    Legs.Builder legsBuilder = Legs.builder();
     while (fieldsIterator.hasNext()) {
       Entry<String,JsonNode> field = fieldsIterator.next();
       String key = field.getKey();
       JsonNode value = field.getValue();
       if (key.equals(DISTANCE)) {
-        legs.setDistance(value);
+        legsBuilder.setDistance(value);
       } else if (key.equals(DURATION)) {
         int duration = Integer.valueOf(value.get("text").toString().replaceAll("[^0-9]", ""));
-        legs.setDuration(duration);
+        legsBuilder.setDuration(duration);
       } else if (key.equals(STEPS))  {
           for (JsonNode step : value) {
-            legs.getSteps().add(StepParser.parseStep(step));
-        }
+            legsBuilder.addStep(StepParser.parseStep(step));
+          }
+
       }
     }
-    return legs;
+    return legsBuilder.build();
   }
 
 

@@ -1,6 +1,5 @@
 package WhereToMeet.direction;
 
-import WhereToMeet.LocationFinder;
 import WhereToMeet.controller.MapController;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -13,15 +12,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class DirectionParser {
-  private final static String WAYPOINTES = "geocoded_waypoints";
   private final static String ROUTES = "routes";
   private final static String STATUS = "status";
   private final static Logger log = LoggerFactory.getLogger(MapController.class);
 
-  public static DirectionResult parseTheDirectionResponse(String direction) throws JsonProcessingException {
+  public static DirectionResult parseTheDirectionResponse(String direction) {
     JsonFactory factory = new JsonFactory();
     ObjectMapper mapper = new ObjectMapper(factory);
-    DirectionResult directionResult = new DirectionResult();
+    DirectionResult.Builder directionResultBuilder = DirectionResult.builder();
 
     try {
       JsonNode rootNode = mapper.readTree(direction);
@@ -31,20 +29,20 @@ public class DirectionParser {
           Entry<String,JsonNode> field = fieldsIterator.next();
           String key = field.getKey();
           JsonNode value = field.getValue();
-          if (key.equals(WAYPOINTES)) {
-            directionResult.setGeocoded_waypoints(value);
-          } else if (key.equals(ROUTES)) {
-            directionResult.setRoutes(RoutesParser.parseRoute(value.get(0)));
+          if (key.equals(ROUTES)) {
+            directionResultBuilder.setRoutes(RoutesParser.parseRoute(value.get(0)));
           } else if (key.equals(STATUS)) {
-            directionResult.setStatus(value.toString());
+            directionResultBuilder.setStatus(value.toString());
           }
         }
       }
     } catch (JsonMappingException e) {
-      log.info(e.toString());
+      log.warn(e.toString());
+      throw new IllegalStateException("Server error.");
     } catch(JsonProcessingException e) {
-      log.info(e.toString());
+      log.warn(e.toString());
+      throw new IllegalStateException("Server error.");
     }
-    return directionResult;
+    return directionResultBuilder.build();
   }
 }
