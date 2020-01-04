@@ -1,7 +1,8 @@
 import axios from 'axios'
 
-const MAP_API_URL = 'http://localhost:5000'
-const LOCATION_API_URL = `${MAP_API_URL}/locations`
+ const MAP_API_URL = 'http://localhost:5000'
+ const LOCATION_API_URL = `${MAP_API_URL}/locations`
+//const URL = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
 
 
 class MapDataService {
@@ -10,11 +11,7 @@ class MapDataService {
         let originTxt = origin.toString().replace(" ", "+");
         let destinationTxt = destination.toString().replace(" ", "+");
         const uri = `${LOCATION_API_URL}/origin=${originTxt}&destination=${destinationTxt}`;
-        axios.get(uri).then(
-            response => {
-                console.log(response)}
-        )
-        return "ddd";
+        return axios.get(uri);
     }
 }
 
