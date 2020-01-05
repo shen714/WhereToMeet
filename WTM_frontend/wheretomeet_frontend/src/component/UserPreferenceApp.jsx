@@ -11,9 +11,8 @@ class UserPreferenceApp extends Component {
                 <div>
                     <Switch>
                     <Route path="/" exact component={MainPageComponent} />
-                        <Route path="/userpreferences" exact component={PreferencesComponent} />
-                        <Route path="/login" exact component={LoginComponent} />
-                        
+                    <Route path="/userpreferences" exact component={PreferencesComponent} />
+                    <Route path="/login" exact component={LoginComponent} />    
                     </Switch>
                 
                 </div>

@@ -10,7 +10,7 @@ class MapApp extends Component {
                 <div>
                     <Switch>
                     <Route path="/" exact component={MainPageComponent} />
-                        <Route path="/locations" exact component={LocationsComponent} />                
+                    <Route path="/locations" exact component={LocationsComponent} />                
                     </Switch>
                 
                 </div>

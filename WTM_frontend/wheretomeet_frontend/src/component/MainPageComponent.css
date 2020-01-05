@@ -1,0 +1,39 @@
+.MainPage {
+    display: flex;
+	justify-content: center;
+}
+
+.MainPage h1 {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+}
+
+.MainPage p {
+    color: #999;
+}
+
+.MainPage {
+    padding-top: 250px;
+    /* The image used */
+    background-image: url("../webbackground.jpg");
+  
+    height: 100%;
+    width: 100%;
+  
+      /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+  }
+  
+  .MainPage .navbar-brand {
+    font-weight: bold;
+  }
+  
+  .LoginContainer {    
+      box-sizing: border-box;
+      position: absolute;
+      top: 20%;
+      width: 350px;
+  }
