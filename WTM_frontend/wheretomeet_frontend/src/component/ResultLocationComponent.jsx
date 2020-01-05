@@ -3,15 +3,16 @@ import React, { Component } from 'react'
 class ResultLocationComponent extends Component{
     constructor(props) {
         super(props)
+        this.name = props.name || 'name';
+        this.address = props.address || 'address';
     }
 
     render () {
         return (
             <div>
-                <p>Restuarant name</p><br/>
-                <p>Address</p>
+                <h3>{this.name}</h3><br/>
+                <p>{this.address}</p>
             </div>
-        
         )
     }
 
