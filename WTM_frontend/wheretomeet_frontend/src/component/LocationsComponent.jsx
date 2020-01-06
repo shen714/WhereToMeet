@@ -15,7 +15,11 @@ class LocationsComponent extends Component{
         MapDataService.getLocationsToMeet(origin, destination)
             .then(
                 response => {
+                    console.log(response);
                     this.setState({results: response.data.results})
+                },
+                error => {
+                    console.log(error);
                 }
             )
     }
