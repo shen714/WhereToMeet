@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class ResultLocationComponent extends Component{
+class SingleResultComponent extends Component{
     constructor(props) {
         super(props)
         this.name = props.name || 'name';
@@ -18,5 +18,5 @@ class ResultLocationComponent extends Component{
 
 }
 
-export default ResultLocationComponent
+export default SingleResultComponent
 

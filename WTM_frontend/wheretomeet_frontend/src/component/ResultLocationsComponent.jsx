@@ -1,22 +1,18 @@
 import React, { Component } from 'react'
-import ResultLocationComponent from './ResultLocationComponent'
+import SingleResultComponent from './SingleResultComponent'
+import ResultMapComponent from './ResultMapComponent'
 
-class ResultLocationsComponent extends Component{
-    constructor(props) {
-        super(props)
-        this.results = props.results
-    }
-
+class ResultsComponent extends Component{
     render() {
-        console.log(this.results);
         return (
             <div>
-                {this.results.map((result, index) => (
-                        <ResultLocationComponent key={index} name={result.name} address={result.plus_code.compound_code} />
+                {this.props.results.map((result, index) => (
+                        <SingleResultComponent key={index} name={result.name} address={result.plus_code.compound_code} />
                     ))}
+                <ResultMapComponent />
             </div>
         )
     }
 }
 
-export default ResultLocationsComponent
+export default ResultsComponent

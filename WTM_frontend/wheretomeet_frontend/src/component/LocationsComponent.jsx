@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import MapDataService from '../service/MapDataService'
-import ResultLocationsComponent from './ResultLocationsComponent'
+import ResultsComponent from './ResultLocationsComponent'
+
 
 class LocationsComponent extends Component{
     constructor(props) {
@@ -28,7 +29,7 @@ class LocationsComponent extends Component{
                 destination: <input type="text" name="destination" id="destination"/><br/>
                 <input onClick={() => this.getMeetingLocations(document.getElementById('origin').value, document.getElementById('destination').value)} type="submit" value="Submit"/>
                 
-                <ResultLocationsComponent results={this.state.results} />
+                <ResultsComponent results={this.state.results} />
             </div>
         )
     }
