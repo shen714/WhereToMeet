@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import LocationsComponent from './LocationsComponent'
 import MainPageComponent from './MainPageComponent'
+import NotFoundComponent from './NotFoundComponent'
+import AboutUsComponent from './AboutUsComponent';
+import SignUpComponent from './SignUpComponent';
 
 class MapApp extends Component {
     render() {
@@ -10,9 +13,11 @@ class MapApp extends Component {
                 <div>
                     <Switch>
                     <Route path="/" exact component={MainPageComponent} />
-                    <Route path="/locations" exact component={LocationsComponent} />                
+                    <Route path="/aboutus" exact component={AboutUsComponent} />
+                    <Route path="/locations" exact component={LocationsComponent} /> 
+                    <Route path="/signup" exact component={SignUpComponent} /> 
+                    <Route component={NotFoundComponent} />               
                     </Switch>
-                
                 </div>
             </Router>
         )

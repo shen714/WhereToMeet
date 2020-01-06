@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import {Form, FormLabel } from "react-bootstrap";
-import Button from 'react-bootstrap/Button';
+import {Button, Form} from "react-bootstrap";
 import "./LoginComponent.css";
 
 export default function LoginComponent(props) {
-    const [email, setEmail] = useState("");
+    const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
 
     function validateForm() {
-	    return email.length > 0 && password.length > 0;
+	    return userName.length > 0 && password.length > 0;
     }
 
     function handleSubmit(event) {
@@ -19,13 +18,13 @@ export default function LoginComponent(props) {
         <div className="Login">
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="email" size="lg">
-                    <Form.Label>Email address</Form.Label>
+                    <Form.Label>Username</Form.Label>
                     <Form.Control
                         autoFocus
-                        type="email"
-                        placeholder="Enter Email"
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
+                        type="text"
+                        placeholder="Enter username"
+                        value={userName}
+                        onChange={e => setUserName(e.target.value)}
                     />
                 </Form.Group>
                 <Form.Group controlId="password" size="lg">
@@ -33,7 +32,7 @@ export default function LoginComponent(props) {
                     <Form.Control
                         value={password}
                         type="password"
-                        placeholder="Enter Password"
+                        placeholder="Enter password"
                         onChange={e => setPassword(e.target.value)}
                     />
                 </Form.Group>
