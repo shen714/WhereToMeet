@@ -9,7 +9,7 @@ class ResultsComponent extends Component{
                 {this.props.results.map((result, index) => (
                         <SingleResultComponent key={index} name={result.name} address={result.plus_code.compound_code} />
                     ))}
-                <ResultMapComponent />
+                <ResultMapComponent results={this.props.results} />
             </div>
         )
     }

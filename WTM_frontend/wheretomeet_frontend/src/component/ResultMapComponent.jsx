@@ -2,21 +2,30 @@ import React, { Component } from 'react'
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'; 
 
 const style = {
-    width: '100%',
-    height: '100%'
+    width: '60%',
+    height: '60%'
 }
 
 class ResultMapComponent extends Component {
+
     render() {
+        let bounds = new this.props.google.maps.LatLngBounds()
+        for (let i = 0; i < this.props.results.length; i++) {
+            bounds.extend(this.props.results[i].geometry.location)
+        }
+
         return (
             <div >
                 <Map
                     style={style}
                     google={this.props.google}
                     zoom={8}
-                    center={{lat:59.95, lng:30.33}}
+                    initialCenter={{lat:59.95, lng:30.33}}
+                    bounds={bounds}
                 >
-                    <Marker />
+                    {this.props.results.map((result, index) => (
+                        <Marker key={index} name={result.name} position={result.geometry.location} />
+                    ))}
                 </Map>
             </div>
         )
