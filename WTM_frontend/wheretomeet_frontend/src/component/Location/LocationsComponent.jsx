@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import MapDataService from '../service/MapDataService'
+import MapDataService from '../../service/MapDataService'
 import ResultsComponent from './ResultLocationsComponent'
 
 

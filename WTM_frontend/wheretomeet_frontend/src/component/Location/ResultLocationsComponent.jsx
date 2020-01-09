@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import SingleResultComponent from './SingleResultComponent'
 import ResultMapComponent from './ResultMapComponent'
 

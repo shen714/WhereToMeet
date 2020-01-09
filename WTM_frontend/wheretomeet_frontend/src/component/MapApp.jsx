@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import LocationsComponent from './LocationsComponent'
+import LocationsComponent from './Location/LocationsComponent'
 import MainPageComponent from './MainPageComponent'
 import NotFoundComponent from './NotFoundComponent'
-import AboutUsComponent from './AboutUsComponent';
+import AboutUsComponent from './AboutUs/AboutUsComponent';
 import SignUpComponent from './SignUpComponent';
 
 class MapApp extends Component {

@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import {Col, Button, Card, Form, Row} from "react-bootstrap";
 import "./SignUpComponent.css";
+import UserDataService from '../service/UserDataService'
 
 export default function SignUpComponent(props) {
     const handleSubmit = event => {
@@ -9,17 +11,34 @@ export default function SignUpComponent(props) {
           event.preventDefault();
           event.stopPropagation();
         }
+        saveUserInfo(document.getElementById("username").value, document.getElementById("password").value);
       };
+
+    const saveUserInfo = (username, password) => {
+        UserDataService.saveUserInfo(username, password, "preference")
+    }
+    
+    // useEffect(() => {
+    //     UserDataService.retrieveAllUsers()
+    //         .then(
+    //             response => {console.log(response)}
+    //         )
+    // });
+
+    
+
+
     return (
         <div className="SignUpCardContainer">
             <Card className="SignUpCard" style={{ width: '18rem' }}>
                 <Card.Header>Your Information</Card.Header>
                 <Card.Body>
                     <Form noValidate onSubmit={handleSubmit}>
-                        <Form.Group as={Row}>
+                        <Form.Group controlId="signup" as={Row}>
                             <Form.Label>Username</Form.Label>
                             <Form.Control
                                 required
+                                id="username"
                                 type="text"
                                 placeholder="Username"
                             />
@@ -28,6 +47,7 @@ export default function SignUpComponent(props) {
                             <Form.Label>Password</Form.Label>
                             <Form.Control
                                 required
+                                id="password"
                                 type="text"
                                 placeholder="Password"
                             />
@@ -40,8 +60,8 @@ export default function SignUpComponent(props) {
                             <Col sm={10}>
                                 <Form.Check 
                                     type="checkbox"
-                                    id="checkbox-restuarant"
-                                    label="Restuarant"
+                                    id="checkbox-restaurant"
+                                    label="Restaurant"
                                 />
                                 <Form.Check 
                                     type="checkbox"
