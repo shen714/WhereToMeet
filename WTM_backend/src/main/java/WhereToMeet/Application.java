@@ -1,5 +1,6 @@
 package WhereToMeet;
 
+import WhereToMeet.controller.MapController;
 import WhereToMeet.model.User;
 import WhereToMeet.model.UserRepository;
 import org.slf4j.Logger;
@@ -20,8 +21,7 @@ public class Application {
   public static void main(String[] args) {
     SpringApplication.run(Application.class, args);
   }
-//
-//  @Override
+
 //  public void run(String... args) {
 //
 //    log.info("StartApplication...");
@@ -29,19 +29,20 @@ public class Application {
 //    controller.getLocationsToMeet("Disneyland", "Universal+Studios+Hollywood");
 //  }
 
-  @Bean
-  public CommandLineRunner demo(UserRepository userRepository) {
-    return args -> {
-      userRepository.save(new User("Yan", "123", "sushi"));
-      userRepository.save(new User("Kayla", "123", "fast food"));
-      userRepository.save(new User("Shen", "123", "noodle"));
-      log.info("Customers found with findAll():");
-      log.info("-------------------------------");
-      for (User user : userRepository.findAll()) {
-        log.info(user.toString());
-      }
-      log.info("");
-    };
-  }
+//  @Bean
+//  public CommandLineRunner demo(UserRepository userRepository) {
+//    return args -> {
+//      userRepository.save(new User("Yan", "123", "sushi"));
+//      userRepository.save(new User("Kayla", "123", "fast food"));
+//      userRepository.save(new User("Shen", "123", "noodle"));
+//      log.info("Customers found with findAll():");
+//      log.info("-------------------------------");
+//      for (User user : userRepository.findAll()) {
+//        log.info(user.toString());
+//      }
+//      userRepository.deleteAll();
+//      log.info("delete all");
+//    };
+//  }
 
 }

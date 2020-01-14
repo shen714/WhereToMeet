@@ -35,4 +35,9 @@ public class MapController {
     // get location response using the coordinator of the mid point
     return PlaceLocator.locateThePlace(midPoint, "700", "restaurant");
   }
+
+  @GetMapping("/locations")
+  public String getLocations() {
+    return "this is the map";
+  }
 }
