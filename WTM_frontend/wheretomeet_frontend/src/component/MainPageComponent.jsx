@@ -1,4 +1,4 @@
-import LoginCompnent from "./LoginComponent";
+import LoginComponent from "./LoginComponent";
 import "./MainPageComponent.css";
 
 import React, { Component } from 'react'
@@ -8,7 +8,7 @@ class MainPageComponent extends Component {
         return (
             <div className="MainPage">
                 <div className="LoginContainer">
-                    <LoginCompnent />
+                    <LoginComponent />
                 </div>
             </div>
         )

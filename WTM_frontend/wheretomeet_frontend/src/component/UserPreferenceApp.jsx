@@ -12,7 +12,7 @@ class UserPreferenceApp extends Component {
                     <Switch>
                     <Route path="/" exact component={MainPageComponent} />
                     <Route path="/userpreferences" exact component={PreferencesComponent} />
-                    <Route path="/login" exact component={LoginComponent} />    
+                    <Route path="/" exact component={LoginComponent} />    
                     </Switch>
                 
                 </div>

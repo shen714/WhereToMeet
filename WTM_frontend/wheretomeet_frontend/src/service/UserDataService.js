@@ -6,8 +6,8 @@ class UserDataService {
         return axios.get(`${SIGN_UP_PAGE_URL}`);
     }
 
-    saveUserInfo(user_name, password, preference) {
-        return axios.post(`SIGN_UP_PAGE_URL`, user_name, password, preference);
+    saveUserInfo(user) {
+        return axios.post(`${SIGN_UP_PAGE_URL}`, user);
     }
 }
 

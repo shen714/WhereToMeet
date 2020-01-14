@@ -1,21 +1,37 @@
 import React, { useState } from 'react';
+import axios from 'axios'
 import {Button, Form} from "react-bootstrap";
 import "./LoginComponent.css";
+import AuthenticationService from '../service/AuthenticationService'
 
 export default function LoginComponent(props) {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
+    const [hasLoginFailed, setHasLoginFailed] = useState(false);
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
     function validateForm() {
 	    return userName.length > 0 && password.length > 0;
     }
 
     function handleSubmit(event) {
-	    event.preventDefault();
+        event.preventDefault();
+        AuthenticationService
+            .executeBasicAuthenticationService(userName, password)
+                .then(response => {
+                    console.log(response)
+                    AuthenticationService.registerSuccessfulLogin(userName, password)
+                    props.history.push(`/locations`)
+                }).catch(() => {
+                    setShowSuccessMessage(false)
+                    setHasLoginFailed(true)
+                })
     }
 
     return (
         <div className="Login">
+            {hasLoginFailed && <div className="alert alert-warning">Invalid Credentials</div>}
+            {showSuccessMessage && <div>Login Sucessful</div>}
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="email" size="lg">
                     <Form.Label>Username</Form.Label>

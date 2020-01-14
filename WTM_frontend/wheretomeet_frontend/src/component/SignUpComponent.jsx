@@ -8,14 +8,34 @@ export default function SignUpComponent(props) {
     const handleSubmit = event => {
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
-          event.preventDefault();
           event.stopPropagation();
         }
-        saveUserInfo(document.getElementById("username").value, document.getElementById("password").value);
+        // const checkboxes = document.getElementsByName("checkbox");
+        // let preferences = [];
+        // for (let i = 0; i < checkboxes.length; i++) {
+        //     if (checkboxes[i].checked) {
+        //         preferences.append(checkboxes[i]);
+        //     }
+        // }
+
+        let user = {
+            userName: document.getElementById("username").value,
+            password: document.getElementById("password").value,
+            preferredPlaces: "preference"
+        }
+
+        saveUserInfo(user);
+        event.preventDefault();
       };
 
-    const saveUserInfo = (username, password) => {
-        UserDataService.saveUserInfo(username, password, "preference")
+    const saveUserInfo = (user) => {
+        UserDataService.saveUserInfo(user)
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
     }
     
     // useEffect(() => {
@@ -34,7 +54,7 @@ export default function SignUpComponent(props) {
                 <Card.Header>Your Information</Card.Header>
                 <Card.Body>
                     <Form noValidate onSubmit={handleSubmit}>
-                        <Form.Group controlId="signup" as={Row}>
+                        <Form.Group as={Row}>
                             <Form.Label>Username</Form.Label>
                             <Form.Control
                                 required
@@ -60,16 +80,19 @@ export default function SignUpComponent(props) {
                             <Col sm={10}>
                                 <Form.Check 
                                     type="checkbox"
+                                    name="checkbox"
                                     id="checkbox-restaurant"
                                     label="Restaurant"
                                 />
                                 <Form.Check 
                                     type="checkbox"
+                                    name="checkbox"
                                     id="checkbox-movie"
                                     label="Movie Theater"
                                 />
                                 <Form.Check 
                                     type="checkbox"
+                                    name="checkbox"
                                     id="checkbox-shopping"
                                     label="Shopping Mall"
                                 />
