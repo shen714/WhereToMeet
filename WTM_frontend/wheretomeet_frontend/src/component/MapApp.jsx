@@ -5,10 +5,10 @@ import MainPageComponent from './MainPageComponent'
 import NotFoundComponent from './NotFoundComponent'
 import AboutUsComponent from './AboutUs/AboutUsComponent';
 import SignUpComponent from './SignUpComponent';
-import LoginComponent from './LoginComponent';
 import LogoutComponent from './LogoutComponent'
 import AuthenticatedRoute from './AuthenticatedRoute';
 import NavBarComponent from './NavBarComponent';
+import PreferencesComponent from './PreferencesComponent';
 
 class MapApp extends Component {
     render() {
@@ -17,13 +17,27 @@ class MapApp extends Component {
                 <NavBarComponent />
                 <div>
                     <Switch>
-                    <Route path="/" exact component={MainPageComponent} />
-                    <AuthenticatedRoute path="/logout" exact component={LogoutComponent} />
-                    <AuthenticatedRoute path="/locations" exact component={LocationsComponent} />
-                    <Route path="/aboutus" exact component={AboutUsComponent} />
-                    <Route path="/locations" exact component={LocationsComponent} /> 
-                    <Route path="/signup" exact component={SignUpComponent} /> 
-                    <Route component={NotFoundComponent} />               
+                        <Route exact path="/">
+                            <MainPageComponent />
+                        </ Route>
+                        <Route exact path="/signup">
+                            <SignUpComponent />
+                        </Route>
+                        <Route exact path="/aboutus">
+                            <AboutUsComponent />
+                        </ Route>
+                        <AuthenticatedRoute exact path="/logout">
+                            <LogoutComponent />
+                        </ AuthenticatedRoute>
+                        <AuthenticatedRoute exact path="/locations">
+                            <LocationsComponent />
+                        </ AuthenticatedRoute>
+                        <AuthenticatedRoute exact  path="/preference">
+                            <PreferencesComponent />
+                        </ AuthenticatedRoute>
+                        <Route >
+                            <NotFoundComponent />
+                        </Route>
                     </Switch>
                 </div>
             </Router>

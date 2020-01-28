@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios'
 import {Button, Form} from "react-bootstrap";
+import { useHistory, useLocation } from 'react-router-dom'
 import "./LoginComponent.css";
 import AuthenticationService from '../service/AuthenticationService'
 
@@ -9,6 +9,8 @@ export default function LoginComponent(props) {
     const [password, setPassword] = useState("");
     const [hasLoginFailed, setHasLoginFailed] = useState(false);
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+    let history = useHistory();
+    let location = useLocation();
 
     function validateForm() {
 	    return userName.length > 0 && password.length > 0;
@@ -17,16 +19,15 @@ export default function LoginComponent(props) {
     function handleSubmit(event) {
         event.preventDefault();
         AuthenticationService
-            .executeBasicAuthenticationService(userName, password)
+            .executeJwtAuthenticationService(userName, password)
                 .then(response => {
-                    console.log(response)
-                    AuthenticationService.registerSuccessfulLogin(userName, password)
-                    props.history.push(`/locations`)
+                    AuthenticationService.registerSuccessfulLoginForJwt(userName, response.data.token)
+                    history.push('/preference')
                 }).catch(() => {
                     setShowSuccessMessage(false)
                     setHasLoginFailed(true)
                 })
-    }
+     }
 
     return (
         <div className="Login">

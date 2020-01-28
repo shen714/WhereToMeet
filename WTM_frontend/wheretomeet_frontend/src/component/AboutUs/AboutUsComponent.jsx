@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import {Button, Card} from "react-bootstrap";
+import React from "react";
+import {Card} from "react-bootstrap";
 import ShenImg from '../../shen.jpg'
 import YanImg from '../../yan.jpg'
 import "./AboutUsComponent.css";
