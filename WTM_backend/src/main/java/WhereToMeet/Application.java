@@ -1,15 +1,12 @@
 package WhereToMeet;
 
-import WhereToMeet.controller.MapController;
-import WhereToMeet.model.User;
-import WhereToMeet.model.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class })
 public class Application {
@@ -22,6 +19,11 @@ public class Application {
     SpringApplication.run(Application.class, args);
   }
 
+  @Bean
+  public BCryptPasswordEncoder bCryptPasswordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
+
 //  public void run(String... args) {
 //
 //    log.info("StartApplication...");
@@ -32,12 +34,12 @@ public class Application {
 //  @Bean
 //  public CommandLineRunner demo(UserRepository userRepository) {
 //    return args -> {
-//      userRepository.save(new User("Yan", "123", "sushi"));
-//      userRepository.save(new User("Kayla", "123", "fast food"));
-//      userRepository.save(new User("Shen", "123", "noodle"));
+//      userRepository.save(new ApplicationUser("Yan", "123", "sushi"));
+//      userRepository.save(new ApplicationUser("Kayla", "123", "fast food"));
+//      userRepository.save(new ApplicationUser("Shen", "123", "noodle"));
 //      log.info("Customers found with findAll():");
 //      log.info("-------------------------------");
-//      for (User user : userRepository.findAll()) {
+//      for (ApplicationUser user : userRepository.findAll()) {
 //        log.info(user.toString());
 //      }
 //      userRepository.deleteAll();

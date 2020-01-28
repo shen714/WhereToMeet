@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class User {
+public class ApplicationUser {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name="id")
@@ -20,9 +20,9 @@ public class User {
   @Column(name="preferred_place")
   private String preferredPlaces;
 
-  public User() {}
+  public ApplicationUser() {}
 
-  public User(String userName, String password, String preferredPlaces) {
+  public ApplicationUser(String userName, String password, String preferredPlaces) {
     this.userName = userName;
     this.password = password;
     this.preferredPlaces = preferredPlaces;
@@ -63,7 +63,7 @@ public class User {
   @Override
   public String toString() {
     return String.format(
-        "User[id=%d, userName='%s', preference='%s']",
+        "ApplicationUser[id=%d, userName='%s', preference='%s']",
         id, userName, preferredPlaces);
   }
 
